@@ -1,16 +1,26 @@
 <p>
 <mat-toolbar color="primary">
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <button mat-icon-button class="menu" [matMenuTriggerFor]="menu" aria-label="Menu button">
      <mat-icon>menu</mat-icon>
    </button>
-   <button class="link" mat-button [routerLink]="['']">JAL Dev</button>
+   <button class="home" mat-button [routerLink]="['']" aria-label="Home link">JAL Dev</button>
    <span class="toolbar-spacer"></span>
-   <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-     <mat-icon>favorite</mat-icon>
-   </button>
-   <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
+
+   <ng-template ngFor let-route [ngForOf]="routes">
+     <button class="link" mat-button routerLink="{{route.path}}">{{route.label}}</button>
+   </ng-template>
+
+   <span class="toolbar-spacer"></span>
+   <button mat-icon-button aria-label="Share" (click)="copyToClipboard()">
     <mat-icon>share</mat-icon>
   </button>
  </mat-toolbar>
+
+ <mat-menu #menu="matMenu" class="mat-primary">
+  <ng-template ngFor let-route [ngForOf]="routes">
+    <button mat-menu-item routerLink="{{route.path}}">{{route.label}}</button>
+  </ng-template>
+</mat-menu>
+
 </p>
 <router-outlet></router-outlet>
