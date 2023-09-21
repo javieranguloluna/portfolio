@@ -9,9 +9,9 @@ export class AppComponent {
   public title = 'JAL Dev';
 
   public routes = [
-    { label: 'Proyectos', path: 'proyectos' },
-    { label: 'Sobre mi', path: 'sobre-mi' },
-    { label: 'Contacto', path: 'procontactoyectos' }
+    { label: 'Proyectos', path: 'projects' },
+    { label: 'Sobre mi', path: 'about' },
+    { label: 'Contacto', path: 'contact' }
   ]
 
   copyToClipboard() {
