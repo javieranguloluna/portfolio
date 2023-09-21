@@ -1,3 +1,5 @@
+@import "variables";
+
 .container {
     margin: 4rem;
     display: flex;
@@ -6,7 +8,7 @@
     justify-content: center;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: $max-width-breakpoint) {
     .container {
         margin: 1rem;
     }
