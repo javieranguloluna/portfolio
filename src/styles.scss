@@ -1,9 +1,12 @@
+
+@import "variables";
+
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-:root { --mat-menu-container-color: #7b1fa2; }
-
-@import "variables";
+:root {
+    --mat-menu-container-color: #7b1fa2;
+}
 
 .container {
     margin: 4rem;
