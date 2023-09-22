@@ -1,0 +1,32 @@
+<div class="container">
+    <form [formGroup]="contactForm">
+        <mat-form-field appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="name">
+            <mat-error *ngIf="contactForm.controls['name'].invalid">{{getError(contactForm.controls['name'])}}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email">
+            <mat-error *ngIf="contactForm.controls['email'].invalid">{{getError(contactForm.controls['email'])}}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Soy</mat-label>
+            <mat-select formControlName="type">
+                <ng-template ngFor let-option [ngForOf]="typeOptions">
+                    <mat-option [value]="option.value">{{option.label}}</mat-option>
+                </ng-template>
+            </mat-select>
+            <mat-error *ngIf="contactForm.controls['type'].invalid">{{getError(contactForm.controls['type'])}}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Comentarios</mat-label>
+            <textarea matInput formControlName="comments"
+            [minlength]="commentMinLength" [maxlength]="commentMaxLength"
+            ></textarea>
+            <mat-hint align="end">{{contactForm.controls['comments'].value!.length}}/{{commentMaxLength}}</mat-hint>
+            <mat-error *ngIf="contactForm.controls['comments'].invalid">{{getError(contactForm.controls['comments'])}}</mat-error>
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!contactForm.valid" (click)="submitForm()">Enviar</button>
+    </form>
+</div>

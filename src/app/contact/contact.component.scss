@@ -1,0 +1,9 @@
+form {
+    mat-form-field, button {
+        width: 100%;
+        textarea {
+            min-height: 5rem;
+        }
+        margin-bottom: 1rem;
+    }
+}
