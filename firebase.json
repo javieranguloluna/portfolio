@@ -14,7 +14,6 @@
       ]
     }
   ],
-
   "hosting": {
     "source": ".",
     "ignore": [
@@ -25,5 +24,14 @@
     "frameworksBackend": {
       "region": "europe-west1"
     }
+  },
+  "emulators": {
+    "functions": {
+      "port": 5001
+    },
+    "ui": {
+      "enabled": true
+    },
+    "singleProjectMode": true
   }
 }
