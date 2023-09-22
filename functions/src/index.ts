@@ -6,7 +6,12 @@ exports.getNotionPage = onCall(async () => {
     auth: process.env.NOTION_SECRET,
   });
 
-  return await notion.pages.retrieve({
+  const page = await notion.pages.retrieve({
     page_id: process.env.NOTION_PAGE_ID || "",
   });
+  const blocks = await notion.blocks.children.list({
+    block_id: process.env.NOTION_PAGE_ID || "",
+  });
+
+  return {page, blocks};
 });
