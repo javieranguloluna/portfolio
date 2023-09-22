@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "jal-dev-front"
+  },
+  "targets": {
+    "jal-dev-front": {
+      "hosting": {
+        "portoflio": [
+          "jal-dev-front"
+        ]
+      }
+    }
   }
 }

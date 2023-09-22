@@ -18,6 +18,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { HomeComponent } from './home/home.component';
 import { ContactComponent } from './contact/contact.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideFunctions,getFunctions } from '@angular/fire/functions';
 
 
 @NgModule({
@@ -40,7 +43,9 @@ import { ContactComponent } from './contact/contact.component';
     MatMenuModule,
     MatInputModule,
     MatSelectModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideFunctions(() => getFunctions())
   ],
   providers: [],
   bootstrap: [AppComponent]
