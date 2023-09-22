@@ -1,22 +1,34 @@
-import { Component } from '@angular/core';
-import { Functions, httpsCallable } from '@angular/fire/functions';
+import { Component, OnInit } from '@angular/core';
+import { Functions, HttpsCallable, httpsCallable } from '@angular/fire/functions';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
 
-  private getNotionPage
+  private getNotionPage: HttpsCallable<void,any>
+
+  public notionPage!: { title: string, blocks: { text: string, link: string }[] }
 
   constructor(functions: Functions) {
     this.getNotionPage = httpsCallable(functions, 'getNotionPage')
-
+  }
+  async ngOnInit(): Promise<void> {
+    this.notionPage = await this.notion()
   }
   
-  public async notion() {
-    const n = await this.getNotionPage()
-    console.log(n)
+  private async notion() {
+    const notionPage = await this.getNotionPage()
+    return {
+      title: notionPage.data.page.properties.title.title.map((t: any) => t.text.content),
+      blocks: notionPage.data.blocks.results.flatMap((b: any) => b.paragraph.rich_text.map((t: any) => ({text: t.plain_text, link: t.href })))
+    }
   }
+
+  public openLink(link: string): void {
+    window.open(link, '_blank')
+  }
+
 }
