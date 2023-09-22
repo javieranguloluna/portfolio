@@ -31,7 +31,7 @@
       ]
     },
     {
-      "target": "portoflio",
+      "target": "jal-dev-front",
       "source": ".",
       "frameworksBackend": {}
     }
