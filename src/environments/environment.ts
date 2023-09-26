@@ -8,6 +8,6 @@ export const environment = {
     messagingSenderId: '411168515822',
   },
   recaptcha: {
-    siteKey: "6LdOolUoAAAAAKltlVh7Hw9VjuP_Sc-3OldrA47V"
+    siteKey: "6Lco01UoAAAAAIsmqUGMjdzWGPDKYR2JeX5QMUbm"
   }
 };
