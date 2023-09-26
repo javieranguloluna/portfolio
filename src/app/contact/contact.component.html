@@ -1,32 +1,61 @@
 <div class="container">
+    <h1>Contáctame</h1>
     <form [formGroup]="contactForm">
         <mat-form-field appearance="outline">
             <mat-label>Nombre</mat-label>
-            <input matInput formControlName="name">
+            <input type="text" matInput formControlName="name" name="name">
             <mat-error *ngIf="contactForm.controls['name'].invalid">{{getError(contactForm.controls['name'])}}</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
             <mat-label>Email</mat-label>
-            <input matInput formControlName="email">
+            <input type="email" matInput formControlName="email" name="email">
             <mat-error *ngIf="contactForm.controls['email'].invalid">{{getError(contactForm.controls['email'])}}</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
-            <mat-label>Soy</mat-label>
-            <mat-select formControlName="type">
-                <ng-template ngFor let-option [ngForOf]="typeOptions">
+            <mat-label>Teléfono</mat-label>
+            <input type="phone" matInput formControlName="phone" name="phone">
+            <mat-error *ngIf="contactForm.controls['phone'].invalid">{{getError(contactForm.controls['phone'])}}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+            <mat-label>Preferencia de contacto</mat-label>
+            <mat-select formControlName="contactPreference">
+                <ng-template ngFor let-option [ngForOf]="contactPreferenceOptions">
                     <mat-option [value]="option.value">{{option.label}}</mat-option>
                 </ng-template>
             </mat-select>
-            <mat-error *ngIf="contactForm.controls['type'].invalid">{{getError(contactForm.controls['type'])}}</mat-error>
+            <mat-error *ngIf="contactForm.controls['contactPreference'].invalid">{{getError(contactForm.controls['contactPreference'])}}</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline">
-            <mat-label>Comentarios</mat-label>
-            <textarea matInput formControlName="comments"
+            <mat-label>Mensaje</mat-label>
+            <textarea matInput formControlName="message"
             [minlength]="commentMinLength" [maxlength]="commentMaxLength"
             ></textarea>
-            <mat-hint align="end">{{contactForm.controls['comments'].value!.length}}/{{commentMaxLength}}</mat-hint>
-            <mat-error *ngIf="contactForm.controls['comments'].invalid">{{getError(contactForm.controls['comments'])}}</mat-error>
+            <mat-hint align="end">{{contactForm.controls['message'].value!.length}}/{{commentMaxLength}}</mat-hint>
+            <mat-error *ngIf="contactForm.controls['message'].invalid">{{getError(contactForm.controls['message'])}}</mat-error>
         </mat-form-field>
-        <button mat-raised-button color="primary" type="submit" [disabled]="!contactForm.valid" (click)="submitForm()">Enviar</button>
+        
+        <ng-container *ngIf="submitResult.status === 'error'">
+            <mat-card class="error-card">
+                <mat-card-content>Error al procesar tu solicitud: {{submitResult.message}}</mat-card-content>
+              </mat-card>
+        </ng-container>
+
+        <button mat-raised-button  type="submit" color="primary"
+            [disabled]="!contactForm.valid || submitResult.status === 'submitted'"
+            (click)="submitForm()"
+        >
+            <ng-container *ngIf="submitResult.status === 'not-submitted'">
+                Enviar
+            </ng-container>
+            <ng-container *ngIf="submitResult.status === 'pending'">
+                Enviando <mat-spinner color="accent" diameter="20"></mat-spinner>
+            </ng-container>
+            <ng-container *ngIf="submitResult.status === 'submitted'">
+                Recibido
+            </ng-container>
+            <ng-container *ngIf="submitResult.status === 'error'">
+                Reenviar
+            </ng-container>
+        </button>
     </form>
 </div>

@@ -1,9 +1,23 @@
 form {
+
+    max-width: 500px;
+
     mat-form-field, button {
         width: 100%;
         textarea {
             min-height: 5rem;
         }
         margin-bottom: 1rem;
+    }
+
+    .error-card {
+        background-color: tomato;
+        margin-bottom: 1rem;
+    }
+
+    button mat-spinner {
+        display: inline-block;
+        vertical-align: middle;
+        margin-bottom: 5px;
     }
 }
