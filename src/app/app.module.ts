@@ -8,6 +8,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { RECAPTCHA_SETTINGS, RecaptchaSettings, RecaptchaModule, RecaptchaFormsModule, RECAPTCHA_V3_SITE_KEY } from "ng-recaptcha";
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -41,6 +43,8 @@ import { provideFunctions,getFunctions } from '@angular/fire/functions';
     // Forms
     FormsModule,
     ReactiveFormsModule,
+    RecaptchaModule,
+    RecaptchaFormsModule,
     // Material
     MatButtonModule,
     MatIconModule,
@@ -55,7 +59,14 @@ import { provideFunctions,getFunctions } from '@angular/fire/functions';
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideFunctions(() => getFunctions())
   ],
-  providers: [],
+  providers: [
+    {
+      provide: RECAPTCHA_SETTINGS,
+      useValue: {
+        siteKey: environment.recaptcha.siteKey
+      } as RecaptchaSettings
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

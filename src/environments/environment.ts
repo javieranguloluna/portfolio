@@ -7,4 +7,7 @@ export const environment = {
     authDomain: 'jal-dev-front.firebaseapp.com',
     messagingSenderId: '411168515822',
   },
+  recaptcha: {
+    siteKey: "6LdOolUoAAAAAKltlVh7Hw9VjuP_Sc-3OldrA47V"
+  }
 };
