@@ -46,9 +46,9 @@ export class ContactComponent {
   })
 
   public contactPreferenceOptions = [
-    { value: 'whatsapp', label: 'WhatsApp' },
-    { value: 'phone_call', label: 'Llamada telefónica' },
-    { value: 'email', label: 'Email' }
+    { value: 'WhatsApp', label: 'WhatsApp' },
+    { value: 'Phone Call', label: 'Llamada telefónica' },
+    { value: 'Email', label: 'Email' }
   ]
 
   constructor(private fb: FormBuilder,
@@ -68,7 +68,8 @@ export class ContactComponent {
     console.log(this.contactForm.value)
     try {
       const submitted = await this.submitContact(this.contactForm.value)
-      
+      console.log(submitted)
+      this.submitResult.status = 'submitted'
     } catch (error: any) {
       console.error(error)
       this.submitResult = {
