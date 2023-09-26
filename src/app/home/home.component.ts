@@ -23,7 +23,10 @@ export class HomeComponent implements OnInit {
     const notionPage = await this.getNotionPage()
     return {
       title: notionPage.data.page.properties.title.title.map((t: any) => t.text.content),
-      blocks: notionPage.data.blocks.results.flatMap((b: any) => b.paragraph.rich_text.map((t: any) => ({text: t.plain_text, link: t.href })))
+      blocks: notionPage.data.blocks.results.flatMap((b: any) => {
+        if (b.paragraph) return b.paragraph.rich_text.map((t: any) => ({text: t.plain_text, link: t.href }))
+        return { text: '', link: '' }
+      })
     }
   }
 
