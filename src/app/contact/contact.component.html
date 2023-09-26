@@ -33,6 +33,11 @@
             <mat-hint align="end">{{contactForm.controls['message'].value!.length}}/{{commentMaxLength}}</mat-hint>
             <mat-error *ngIf="contactForm.controls['message'].invalid">{{getError(contactForm.controls['message'])}}</mat-error>
         </mat-form-field>
+        <re-captcha
+            formControlName="recaptchaReactive"
+            (resolved)="recaptchaSolved($event)"
+        >
+        </re-captcha>
         
         <ng-container *ngIf="submitResult.status === 'error'">
             <mat-card class="error-card">

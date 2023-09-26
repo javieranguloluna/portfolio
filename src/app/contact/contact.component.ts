@@ -15,11 +15,6 @@ interface SubmitResult {
   message: string;
 }
 
-interface SubmitError {
-  message: string;
-}
-
-
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -37,12 +32,13 @@ export class ContactComponent {
     message: ''
   }
 
-  public contactForm = this.fb.nonNullable.group({
+  public contactForm = this.fb.group({
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
     phone: [''],
     contactPreference: ['', Validators.required],
-    message: ['', [Validators.required, Validators.minLength(this.commentMinLength)]]
+    message: ['', [Validators.required, Validators.minLength(this.commentMinLength)]],
+    recaptchaReactive: [null, Validators.required]
   })
 
   public contactPreferenceOptions = [
@@ -63,20 +59,24 @@ export class ContactComponent {
     return 'Error'
   }
 
+  public recaptchaSolved(token: any): void {
+    console.log(token)
+  }
+
   public async submitForm(): Promise<void> {
-    this.submitResult.status = 'pending'
-    console.log(this.contactForm.value)
-    try {
-      const submitted = await this.submitContact(this.contactForm.value)
-      console.log(submitted)
-      this.submitResult.status = 'submitted'
-    } catch (error: any) {
-      console.error(error)
-      this.submitResult = {
-        status: 'error',
-        message: error.message || 'Error desconocido'
+      this.submitResult.status = 'pending'
+      console.log(this.contactForm.value)
+      try {
+        const submitted = await this.submitContact(this.contactForm.value as Contact)
+        console.log(submitted)
+        this.submitResult.status = 'submitted'
+      } catch (error: any) {
+        console.error(error)
+        this.submitResult = {
+          status: 'error',
+          message: error.message || 'Error desconocido'
+        }
       }
-    }
   }
 
 }
