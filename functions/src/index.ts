@@ -24,14 +24,12 @@ exports.getNotionPage = onCall(async () => {
   return {page, blocks};
 });
 
-type EmptyObject = Record<string, never>;
-
 exports.submitContact = onCall(async (request: CallableRequest<Contact>) => {
   const notion = new Client({
     auth: process.env.NOTION_SECRET,
   });
 
-  const create = await notion.databases.create({
+  const create = await notion.pages.create({
     parent: {
       type: "database_id",
       database_id: process.env.NOTION_DATABASE_ID || ""
@@ -39,27 +37,25 @@ exports.submitContact = onCall(async (request: CallableRequest<Contact>) => {
     properties: {
       Name: {
         type: "title",
-        title: [{ type: "text", text: { content: request.data.name } }] as unknown as EmptyObject
+        title: [{ type: "text", text: { content: request.data.name } }]
       },
       Email: {
         type: "email",
-        email: request.data.email as unknown as EmptyObject
+        email: request.data.email
       },
       Phone: {
         type: "phone_number",
-        phone_number: request.data.phone  as unknown as EmptyObject
+        phone_number: request.data.phone 
       },
       "Contact Preference": {
         type: "select",
         select: {
-            options: [{ 
-              name: request.data.contactPreference
-            }]
+          name: request.data.contactPreference
         }
       },
       Message: {
         type: "rich_text",
-        rich_text: request.data.message  as unknown as EmptyObject
+        rich_text: [{ text: { content: request.data.message } }]
       }
     }
   })
