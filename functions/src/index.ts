@@ -1,5 +1,13 @@
-import {onCall} from "firebase-functions/v2/https";
+import {CallableRequest, onCall} from "firebase-functions/v2/https";
 import {Client} from "@notionhq/client";
+
+interface Contact {
+  name: string;
+  email: string;
+  phone: string;
+  contactPreference: string;
+  message: string;
+}
 
 exports.getNotionPage = onCall(async () => {
   const notion = new Client({
@@ -14,4 +22,47 @@ exports.getNotionPage = onCall(async () => {
   });
 
   return {page, blocks};
+});
+
+type EmptyObject = Record<string, never>;
+
+exports.submitContact = onCall(async (request: CallableRequest<Contact>) => {
+  const notion = new Client({
+    auth: process.env.NOTION_SECRET,
+  });
+
+  const create = await notion.databases.create({
+    parent: {
+      type: "database_id",
+      database_id: process.env.NOTION_DATABASE_ID || ""
+    },
+    properties: {
+      Name: {
+        type: "title",
+        title: [{ type: "text", text: { content: request.data.name } }] as unknown as EmptyObject
+      },
+      Email: {
+        type: "email",
+        email: request.data.email as unknown as EmptyObject
+      },
+      Phone: {
+        type: "phone_number",
+        phone_number: request.data.phone  as unknown as EmptyObject
+      },
+      "Contact Preference": {
+        type: "select",
+        select: {
+            options: [{ 
+              name: request.data.contactPreference
+            }]
+        }
+      },
+      Message: {
+        type: "rich_text",
+        rich_text: request.data.message  as unknown as EmptyObject
+      }
+    }
+  })
+
+  return create;
 });
