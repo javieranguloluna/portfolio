@@ -59,10 +59,6 @@ export class ContactComponent {
     return 'Error'
   }
 
-  public recaptchaSolved(token: any): void {
-    console.log(token)
-  }
-
   public async submitForm(): Promise<void> {
       this.submitResult.status = 'pending'
       console.log(this.contactForm.value)
