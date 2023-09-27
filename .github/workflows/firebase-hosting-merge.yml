@@ -12,8 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         env:
-          FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
-          RECAPTCHA_SITE_KEY: ${{ secrets.RECAPTCHA_SITE_KEY }}
+          NG_APP_FIREBASE_API_KEY: ${{ secrets.NG_APP_FIREBASE_API_KEY }}
+          NG_APP_RECAPTCHA_SITE_KEY: ${{ secrets.NG_APP_RECAPTCHA_SITE_KEY }}
       - run: npm ci && npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
@@ -23,4 +23,6 @@ jobs:
           projectId: jal-dev-front
         env:
           FIREBASE_CLI_EXPERIMENTS: webframeworks
+          NG_APP_FIREBASE_API_KEY: ${{ secrets.NG_APP_FIREBASE_API_KEY }}
+          NG_APP_RECAPTCHA_SITE_KEY: ${{ secrets.NG_APP_RECAPTCHA_SITE_KEY }}
           
