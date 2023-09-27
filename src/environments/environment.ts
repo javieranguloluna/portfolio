@@ -3,11 +3,10 @@ export const environment = {
     projectId: 'jal-dev-front',
     appId: '1:411168515822:web:778cf6d9d4eea35c8135ff',
     storageBucket: 'jal-dev-front.appspot.com',
-    apiKey: 'AIzaSyDsglhpiRzj7RhVPq2vIOJEPpz3gM0lxcM',
+    apiKey: '',
     authDomain: 'jal-dev-front.firebaseapp.com',
     messagingSenderId: '411168515822',
   },
-  recaptcha: {
-    siteKey: "6Lco01UoAAAAAIsmqUGMjdzWGPDKYR2JeX5QMUbm"
-  }
+  FIREBASE_API_KEY: "",
+  RECAPTCHA_SITE_KEY: ""
 };

@@ -38,7 +38,7 @@
             (resolved)="recaptchaSolved($event)"
         >
         </re-captcha>
-        
+        <p></p>        
         <ng-container *ngIf="submitResult.status === 'error'">
             <mat-card class="error-card">
                 <mat-card-content>Error al procesar tu solicitud: {{submitResult.message}}</mat-card-content>
