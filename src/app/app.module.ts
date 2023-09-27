@@ -29,8 +29,6 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFunctions,getFunctions } from '@angular/fire/functions';
 
-environment.firebase.apiKey = environment.FIREBASE_API_KEY
-
 
 @NgModule({
   declarations: [
