@@ -29,6 +29,8 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFunctions,getFunctions } from '@angular/fire/functions';
 
+environment.firebase.apiKey = environment.FIREBASE_API_KEY
+
 
 @NgModule({
   declarations: [
@@ -63,7 +65,7 @@ import { provideFunctions,getFunctions } from '@angular/fire/functions';
     {
       provide: RECAPTCHA_SETTINGS,
       useValue: {
-        siteKey: environment.recaptcha.siteKey
+        siteKey: environment.RECAPTCHA_SITE_KEY
       } as RecaptchaSettings
     }
   ],
