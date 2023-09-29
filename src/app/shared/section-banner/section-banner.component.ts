@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
 
 export interface SectionBannerImage {
   name: string;
@@ -10,8 +10,18 @@ export interface SectionBannerImage {
   templateUrl: './section-banner.component.html',
   styleUrls: ['./section-banner.component.scss']
 })
-export class SectionBannerComponent {
+export class SectionBannerComponent implements AfterViewInit {
 
+  @ViewChild('content') contentDiv!: ElementRef
+
+  @Input() content: string = ''
   @Input() image!: SectionBannerImage 
+  @Input() reverse: boolean = false 
+
+  ngAfterViewInit(): void {
+    console.log(this.content)
+    console.log(this.contentDiv)
+    this.contentDiv.nativeElement.innerHTML = this.content
+  }
 
 }
