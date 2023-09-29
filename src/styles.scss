@@ -43,6 +43,11 @@ mat-icon[fontIcon="link"] {
     justify-content: center;
 }
 
+@media screen and (max-width: $max-width-breakpoint-tablet) {
+    .container {
+        margin: 1rem 2rem;
+    }
+}
 
 
 @media screen and (max-width: $max-width-breakpoint) {
