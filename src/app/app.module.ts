@@ -29,6 +29,7 @@ import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFunctions,getFunctions } from '@angular/fire/functions';
 import { SectionBannerComponent } from './shared/section-banner/section-banner.component';
+import { AboutComponent } from './about/about.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { SectionBannerComponent } from './shared/section-banner/section-banner.c
     AppComponent,
     HomeComponent,
     ContactComponent,
-    SectionBannerComponent
+    SectionBannerComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
