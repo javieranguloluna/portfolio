@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Functions, HttpsCallable, httpsCallable } from '@angular/fire/functions';
-import { SectionBannerImage } from '../shared/section-banner/section-banner.component';
+import { SectionBannerData } from '../shared/section-banner/section-banner.component';
 
 @Component({
   selector: 'app-home',
@@ -13,10 +13,41 @@ export class HomeComponent implements OnInit {
 
   public notionPage!: { title: string, blocks: { text: string, link: string }[] }
 
-  public bannerImage: SectionBannerImage = {
-    name: 'Web-Developer-Bootcamp-San-Francisco.jpeg',
-    description: 'Banner'
-  }
+  public sections: SectionBannerData[] = [
+    {
+      content: `
+        <h1>Section Title</h1>
+        <p>Section Content</p>
+      `,
+      image: {
+        name: 'Web-Developer-Bootcamp-San-Francisco.jpeg',
+        description: 'Banner'
+      },
+      reverse: false
+    },
+    {
+      content: `
+        <h1>Section Title</h1>
+        <p>Section Content</p>
+      `,
+      image: {
+        name: 'Web-Developer-Bootcamp-San-Francisco.jpeg',
+        description: 'Banner'
+      },
+      reverse: true
+    },
+    {
+      content: `
+        <h1>Section Title</h1>
+        <p>Section Content</p>
+      `,
+      image: {
+        name: 'Web-Developer-Bootcamp-San-Francisco.jpeg',
+        description: 'Banner'
+      },
+      reverse: false
+    }
+  ]
 
   constructor(functions: Functions) {
     this.getNotionPage = httpsCallable(functions, 'getNotionPage')
