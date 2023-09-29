@@ -25,8 +25,6 @@ export class SectionBannerComponent implements AfterViewInit {
   @Input() reverse: boolean = false 
 
   ngAfterViewInit(): void {
-    console.log(this.content)
-    console.log(this.contentDiv)
     this.contentDiv.nativeElement.innerHTML = this.content
   }
 
