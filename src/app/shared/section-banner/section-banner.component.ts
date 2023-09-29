@@ -5,6 +5,12 @@ export interface SectionBannerImage {
   description: string
 }
 
+export interface SectionBannerData {
+  content: string;
+  image: SectionBannerImage;
+  reverse: boolean;
+}
+
 @Component({
   selector: 'app-section-banner',
   templateUrl: './section-banner.component.html',
