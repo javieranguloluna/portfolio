@@ -1,9 +1,20 @@
+<img class="banner" src="../../assets/Web-Developer-Bootcamp-San-Francisco.jpeg" alt="home-banner">
 <div class="container">
     <h1>Desarrollador FrontEnd Especializado en Angular</h1>
     <p>
         ¡Bienvenido a mi mundo de desarrollo! Desde mis raíces en la programación hasta mi experiencia en el campo de la salud y la tecnología, he recorrido un viaje diverso. Con experiencia en Angular, Node.js, TypeScript y más, estoy comprometido con la creación de soluciones tecnológicas innovadoras. Explore mi trayectoria desde la creación de una StartUp hasta el desarrollo de proyectos desafiantes y la exploración de la inteligencia artificial. Estoy en busca de nuevas oportunidades para aplicar mis habilidades y contribuir a soluciones impactantes. ¡Únase a mí en este emocionante viaje!
     </p>
     <span class="separator"></span>
+
+
+    <ng-template ngFor let-section [ngForOf]="sections" >
+        <app-section-banner
+        [image]="section.image"
+        [reverse]="section.reverse"
+        [content]="section.content">
+        </app-section-banner>
+    </ng-template>
+    
     <div *ngIf="notionPage">
         <h2>{{notionPage.title}}</h2>
         <ng-template ngFor let-block [ngForOf]="notionPage.blocks">

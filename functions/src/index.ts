@@ -60,5 +60,5 @@ exports.submitContact = onCall(async (request: CallableRequest<Contact>) => {
     }
   })
 
-  return create;
+  return { id: create.id };
 });
