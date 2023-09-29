@@ -1,3 +1,5 @@
+@import 'variables';
+
 .header {
     img {
         width: 100%;
@@ -27,9 +29,62 @@
         mat-card-content {
             max-height: 600px;
             overflow-y: auto;
+            overflow-x: hidden;
+            ul {
+                padding-left: 1rem;
+            }
+            .text {
+                padding: 2rem 0;
+                overflow-x: hidden;
+            }
         }
         width: 100%;
         margin: 1rem;
         padding: 2rem;
     }
+}
+
+@media screen and (max-width: $max-width-breakpoint-tablet) {
+    .about-wrapper {
+        mat-card {
+            margin: 0.5rem;
+            padding: 1rem;
+
+            mat-card-content {
+                max-height: 700px;
+                padding: 0;
+                
+            .text {
+                padding: 0;
+            }
+            }
+        }
+    }
+
+}
+
+@media screen and (max-width: $max-width-breakpoint) {
+    .header {
+        .title {
+            font-size: 30px;
+        }
+    }
+
+    .about-wrapper {
+        display: block;
+        mat-card {
+            margin: 1rem 0;
+            padding: 1rem;
+
+            mat-card-content {
+                max-height: none;
+                padding: 0;
+                
+            .text {
+                padding: 0;
+            }
+            }
+        }
+    }
+
 }
