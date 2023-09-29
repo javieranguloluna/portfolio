@@ -28,13 +28,15 @@ import { ContactComponent } from './contact/contact.component';
 import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
 import { environment } from '../environments/environment';
 import { provideFunctions,getFunctions } from '@angular/fire/functions';
+import { SectionBannerComponent } from './shared/section-banner/section-banner.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    ContactComponent
+    ContactComponent,
+    SectionBannerComponent
   ],
   imports: [
     BrowserModule,
